@@ -3,17 +3,17 @@ NodeJS microservice template
 
 ### Installation Instructions
 1. Clone this repository
-```sh
+  ```sh
 $ git clone https://github.com/CanopyCloud/microservice-nodejs.git my-nodejs-microservice
 ```
 
 2. Build the docker container
-```sh
+  ```sh
 $ docker build -t my-nodejs-microservice ./my-nodejs-microservice
 ```
 
 3. Run the docker container
-```sh
+  ```sh
 $ docker run my-nodejs-microservice
 ```
 
