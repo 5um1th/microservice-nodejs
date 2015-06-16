@@ -1,7 +1,24 @@
 # microservice-nodejs
 NodeJS microservice template
 
-### Install node.js/npm without sudo
+### Installation Instructions
+####1. Clone this repository
+```sh
+$ git clone https://github.com/CanopyCloud/microservice-nodejs.git my-nodejs-microservice
+```
+
+####2. Build the docker container
+```sh
+$ docker build -t my-nodejs-microservice ./my-nodejs-microservice
+```
+
+####3. Run the docker container
+```sh
+$ docker run my-nodejs-microservice
+```
+
+###Random notes
+#### Install node.js/npm without sudo
 ```sh
 $ sudo apt-get -y install build-essential g++ libssl-dev pkg-config
 $ sudo mkdir -p /usr/local/{share/man,bin,lib/node,include/node}
