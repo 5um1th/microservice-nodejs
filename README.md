@@ -16,6 +16,10 @@ $ docker build -t my-nodejs-microservice ./my-nodejs-microservice
   ```sh
 $ docker run my-nodejs-microservice
 ```
+   Expected output should be
+   ```
+development
+```
 
 ###Random notes
 Install node.js/npm without sudo
