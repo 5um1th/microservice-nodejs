@@ -7,11 +7,16 @@ RUN     rpm -Uvh http://download.fedoraproject.org/pub/epel/6/i386/epel-release-
 RUN     yum install -y npm
 
 # Bundle app source
-COPY . /src
+COPY . /microservice-nodejs
 
 # Install app dependencies
-RUN cd /src; npm install
+ADD package.json /src/package.json
+RUN cd /src && npm install
 
-EXPOSE  8080
+# Environment variables
+ENV NODE_ENV production
+ENV EXPRESS_PORT 80
 
-CMD ["node", "/src/index.js"]
+EXPOSE 8080
+
+CMD ["node", "/microservice-nodejs/server.js"]
