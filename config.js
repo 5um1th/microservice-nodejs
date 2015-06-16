@@ -10,11 +10,11 @@ config.express = {
 
 if (PRODUCTION) {
   config.express.ip = "0.0.0.0";
-  config.express.port = "80";
+  config.express.port = process.env.EXPRESS_PORT || 80;
 }
 
 if (TEST) {
-  config.express.port = 4567;
+  config.express.port = process.env.EXPRESS_PORT || 4657;
 }
 
 config.currentENV = currentENV;
