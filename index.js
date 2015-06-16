@@ -1,17 +1,17 @@
 var express = require('express');
+var config  = require('./config');
+var path    = require('path');
+var app     = express();
+var server  = require('http').createServer(app);
 
-// Constants
-var PORT = 8080;
-
-// App
-var app = express();
 app.get('/', function (req, res) {
   res.send('Hello world\n');
 });
 
-app.get('/alex', function (req,res) {
-  res.send('Hello Alex');
+app.use(function(req, res, next) {
+  var err = new Error('Not found');
+  err.status = 404;
+  next(err);
 });
 
-app.listen(PORT);
-console.log('Running on http://localhost:' + PORT);
+module.exports = server;
