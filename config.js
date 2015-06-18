@@ -12,7 +12,7 @@ config.rabbitmq = {
   port: process.env.RABBITMQ_PORT || 5672,
   host: process.env.RABBITMQ_HOST || "localhost", 
   login: process.env.RABBITMQ_USER || "guest",
-  password: process.env.RABBITMQ_PASSWORD || "guest",
+  password: process.env.RABBITMQ_PASSWORD || "guest"
 };
 
 if (PRODUCTION) {
