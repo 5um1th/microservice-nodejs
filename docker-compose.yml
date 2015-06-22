@@ -1,13 +1,11 @@
 rabbitmq:
-  image: dockerfile/rabbitmq:latest
-rabbitmqready:
-  image: aanand/wait
-  links:
-   - rabbitmq
+  image: rabbitmq
+  ports:
+   - "5000:5672"
 app:
   build: .
   command: node server.js
   links:
-   - rabbitmqready
+   - rabbitmq
   volumes:
-   - .:/code
+   - ./microservice-nodejs
