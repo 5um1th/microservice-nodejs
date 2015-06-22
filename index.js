@@ -8,13 +8,15 @@ var sender  = require('./lib/services/sender');
 var receiver = require('./lib/services/receiver');
 
 app.get('/send', function (req, res) {
-  res.send('This page is sending data');
+  res.send('This page is sending data\n');
   sender.publishMessage('testing', 'This is a test! ', '');
 });
 
 app.get('/receive', function (req, res) {
-  res.send('This page is receiving data');
-  receiver.subscribeMessage('testing', 'bla', '')
+  res.send('This page is receiving data\n');
+  receiver.subscribeMessage('testing', 'bla', '', function(message) {
+    console.log('Received message: ' + message.data.toString('utf-8'));
+  });
 });
 
 app.get('/info', function (req,res) {
