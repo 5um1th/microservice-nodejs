@@ -7,8 +7,8 @@ bole.output({level: "debug", stream: process.stdout});
 var log = bole("server");
 log.info({env: process.env.NODE_ENV}, "Server process starting");
 
-services.getRabbitMqConnection(function(connection) {
-  if (connection) {
+services.getRabbitMqConnection(function(conn) {
+  if (conn) {
 
     log.info("Connected to RabbitMQ on: " + config.rabbitmqURL);
 
@@ -24,5 +24,3 @@ services.getRabbitMqConnection(function(connection) {
       log.error("Unable to connect to RabbitMQ");
     }
 });
-
-module.exports = app;

@@ -4,9 +4,17 @@ var path    = require('path');
 var app     = express();
 var server  = require('http').createServer(app);
 var info    = require('./lib/controllers/info');
+var sender  = require('./lib/services/sender');
+var receiver = require('./lib/services/receiver');
 
-app.get('/', function (req, res) {
-  res.send('Hello world\n');
+app.get('/send', function (req, res) {
+  res.send('This page is sending data');
+  sender.publishMessage('testing', 'This is a test! ', '');
+});
+
+app.get('/receive', function (req, res) {
+  res.send('This page is receiving data');
+  receiver.subscribeMessage('testing', 'bla', '')
 });
 
 app.get('/info', function (req,res) {

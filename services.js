@@ -9,7 +9,6 @@ function getRabbitMqConnection(callback) {
     if (rabbitmqConnection) {
         callback(rabbitmqConnection);
     } else {
-        console.log("Starting RabbitMQ on: " + rabbitmqURL);
         var conn = amqp.createConnection({url: rabbitmqURL});
         conn.on('ready', function() {
             rabbitmqConnection = conn;

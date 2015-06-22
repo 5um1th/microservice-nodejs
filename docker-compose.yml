@@ -1,0 +1,13 @@
+rabbitmq:
+  image: dockerfile/rabbitmq:latest
+rabbitmqready:
+  image: aanand/wait
+  links:
+   - rabbitmq
+app:
+  build: .
+  command: node server.js
+  links:
+   - rabbitmqready
+  volumes:
+   - .:/code
