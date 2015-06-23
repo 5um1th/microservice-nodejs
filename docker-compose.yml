@@ -1,11 +1,15 @@
+microservice:
+  build: .
+  command: "nodejs server.js"
+  ports:
+    - "8080:80"
+  links:
+    - rabbitmq
+  volumes:
+    - ./microservice-nodejs
 rabbitmq:
   image: rabbitmq
   ports:
-   - "5000:5672"
-app:
-  build: .
-  command: node server.js
-  links:
-   - rabbitmq
-  volumes:
-   - ./microservice-nodejs
+    - "5672:5672"
+  expose:
+    - "5672"
