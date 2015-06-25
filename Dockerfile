@@ -1,11 +1,5 @@
-FROM  ubuntu
-
-# make sure apt is up to date
-RUN apt-get update
-RUN apt-get -y install python-software-properties git build-essential
-
-# Install Node.js and npm
-RUN apt-get install -y nodejs npm git git-core
+# Install Node.js docker container
+FROM node:0.10-onbuild
 
 # Bundle app source
 COPY . /microservice-nodejs
@@ -25,4 +19,4 @@ ENV EXPRESS_PORT 80
 EXPOSE 8080
 EXPOSE 5672
 
-CMD ["nodejs", "/microservice-nodejs/server.js"]
+CMD ["node", "/microservice-nodejs/server.js"]
