@@ -18,5 +18,6 @@ ENV EXPRESS_PORT 80
 
 EXPOSE 8080
 EXPOSE 5672
+EXPOSE 15672
 
 CMD ["node", "/microservice-nodejs/server.js"]

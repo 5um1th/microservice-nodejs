@@ -1,20 +1,37 @@
 # microservice-nodejs
 NodeJS microservice template
 
-### Installation instructions
-1. Clone this repository
-  ```sh
+### Installation instructions using Docker Compose
+
+1. Clone this repository:
+```sh
 $ git clone https://github.com/CanopyCloud/microservice-nodejs.git microservice-nodejs
 ```
-
-2. Build the docker container
-  ```sh
-$ sudo docker build -t microservice-nodejs ./microservice-nodejs
+2. Go into the folder:
+```sh
+$ cd microservice-nodejs
+```
+3. Use docker compose:
+```sh
+$ sudo docker-compose up
 ```
 
-3. Run the docker container
-  ```sh
-$ sudo docker run -p 8080:80 microservice-nodejs
+### Installation instructions using containers linking
+1. Clone this repository:
+```sh
+$ git clone https://github.com/CanopyCloud/microservice-nodejs.git microservice-nodejs
+```
+2. Build the docker container
+```sh
+$ sudo docker build -t microservice-nodejs ./microservice-nodejs
+```
+3. Pul the RabitMQ docker image and run it
+```sh
+$ sudo docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq
+```
+4. Run the microservice docker container and link it with RabbitMQ
+```sh
+$ sudo docker run -p 8080:80 --name app --link rabbitmq:rabbitmq microservice-nodejs
 ```
 
 ### Random notes

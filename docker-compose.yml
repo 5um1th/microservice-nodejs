@@ -1,6 +1,6 @@
 microservice:
   build: .
-  command: "nodejs server.js"
+  command: "node server.js"
   ports:
     - "8080:80"
   links:
