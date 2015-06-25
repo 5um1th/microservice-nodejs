@@ -7,10 +7,12 @@ NodeJS microservice template
    ```sh
 $ git clone https://github.com/CanopyCloud/microservice-nodejs.git microservice-nodejs
 ```
+
 2. Go into the folder:
    ```sh
 $ cd microservice-nodejs
 ```
+
 3. Use docker compose:
    ```sh
 $ sudo docker-compose up
@@ -21,14 +23,17 @@ $ sudo docker-compose up
    ```sh
 $ git clone https://github.com/CanopyCloud/microservice-nodejs.git microservice-nodejs
 ```
+
 2. Build the docker container
    ```sh
 $ sudo docker build -t microservice-nodejs ./microservice-nodejs
 ```
+
 3. Pul the RabitMQ docker image and run it
    ```sh
 $ sudo docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq
 ```
+
 4. Run the microservice docker container and link it with RabbitMQ
    ```sh
 $ sudo docker run -p 8080:80 --name app --link rabbitmq:rabbitmq microservice-nodejs
@@ -44,8 +49,12 @@ $ sudo apt-get install nodejs-legacy
 $ sudo apt-get install npm
 ```
 
-Install docker
-
+Install Docker
    ```sh
-$ https://docs.docker.com/installation/ubuntulinux/#installing-docker-on-ubuntu
+https://docs.docker.com/installation/ubuntulinux/#installing-docker-on-ubuntu
+```
+
+Install Docker Compose
+   ```sh
+https://docs.docker.com/compose/install/
 ```
