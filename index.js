@@ -9,12 +9,12 @@ var receiver = require('./lib/services/receiver');
 
 app.get('/send', function (req, res) {
   res.send('This page is sending data\n');
-  sender.publishMessage('testing', 'This is a test! ', '');
+  sender.publishMessage('testexchange', 'This is a test !', '');
 });
 
 app.get('/receive', function (req, res) {
   res.send('This page is receiving data\n');
-  receiver.subscribeMessage('testing', 'bla', '', function(message) {
+  receiver.subscribeMessage('testexchange', '', function(message) {
     console.log('Received message: ' + message.data.toString('utf-8'));
   });
 });
