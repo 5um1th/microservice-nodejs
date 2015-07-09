@@ -16,6 +16,12 @@ config.rabbitmq = {
   password: process.env.RABBITMQ_PASSWORD || "guest"
 };
 
+config.mongodb = {
+  port: process.env.MONGODB_PORT || 27017,
+  host: process.env.MONGODB_HOST || "localhost",
+  db: process.env.MONGODB_DATABASE || "database"
+};
+
 // only when using Docker
 if (S(config.rabbitmq.port).contains("tcp://")) {
     config.rabbitmq.host = S(config.rabbitmq.port).between("tcp://",":").s
@@ -34,5 +40,8 @@ if (TEST) {
 
 config.rabbitmqURL = "amqp://" + config.rabbitmq.login + ":" + config.rabbitmq.password +
   "@" + config.rabbitmq.host + ":" + config.rabbitmq.port;
+
+config.mongodbURL = "mongodb://" + config.mongodb.host + ":" + config.mongodb.port +
+  "/" + config.mongodb.db + "_" + currentENV;
 
 config.currentENV = currentENV;

@@ -10,7 +10,8 @@
     "express": "3.2.4",
     "mocha": "~2.2.5",
     "supertest": "~1.0.1",
-    "string": "~3.3.0"
+    "string": "~3.3.0",
+    "mongodb": "~2.0.36"
   },
   "main": "index.js",
   "devDependencies": {},

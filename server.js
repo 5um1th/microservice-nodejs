@@ -7,20 +7,27 @@ bole.output({level: "debug", stream: process.stdout});
 var log = bole("server");
 log.info({env: process.env.NODE_ENV}, "Server process starting");
 
-services.getRabbitMqConnection(function(conn) {
-  if (conn) {
+services.getMongoDbConnection(function(err, db) {
+  if (db) {
+    log.info("Connected to MongoDB on: " + config.mongodbURL);
 
-    log.info("Connected to RabbitMQ on: " + config.rabbitmqURL);
+    services.getRabbitMqConnection(function(conn) {
+      if (conn) {
+      log.info("Connected to RabbitMQ on: " + config.rabbitmqURL);
 
-    app.listen(config.express.port, config.express.ip, function(error) {
-      if(error) {
-        log.error("Unable to listen for connections", error);
-        process.exit(10);
+      app.listen(config.express.port, config.express.ip, function(error) {
+        if(error) {
+          log.error("Unable to listen for connections", error);
+          process.exit(10);
+        }
+        log.info("Server is listening on http://" +
+        config.express.ip + ":" + config.express.port);
+      });
+    } else {
+        log.error("Unable to connect to RabbitMQ");
       }
-      log.info("Server is listening on http://" +
-      config.express.ip + ":" + config.express.port);
     });
   } else {
-      log.error("Unable to connect to RabbitMQ");
-    }
+    console.log("Unable to connect to MongoDB");
+  }
 });
