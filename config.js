@@ -22,6 +22,8 @@ config.mongodb = {
   db: process.env.MONGODB_DATABASE || "database"
 };
 
+console.log(MONGODB_PORT, MONGODB_HOST, MONGODB_DATABASE)
+
 // only when using Docker
 if (S(config.rabbitmq.port).contains("tcp://")) {
     config.rabbitmq.host = S(config.rabbitmq.port).between("tcp://",":").s
