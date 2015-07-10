@@ -29,14 +29,19 @@ $ git clone https://github.com/CanopyCloud/microservice-nodejs.git microservice-
 $ sudo docker build -t microservice-nodejs ./microservice-nodejs
 ```
 
-3. Pul the RabitMQ docker image and run it
+3. Pull the RabbitMQ docker image and run it
    ```sh
 $ sudo docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq
 ```
 
-4. Run the microservice docker container and link it with RabbitMQ
+4. Pull the MongoDB docker image and run it
    ```sh
-$ sudo docker run -p 8080:80 --name app --link rabbitmq:rabbitmq microservice-nodejs
+$ sudo docker run -it --rm --name mongo -p 27017:27017 mongo
+```
+
+5. Run the microservice docker container and link it with RabbitMQ and MongoDB
+   ```sh
+$ sudo docker run -p 8080:80 --name app --link rabbitmq:rabbitmq --link mongo:mongo microservice-nodejs
 ```
 
 ### Random notes

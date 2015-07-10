@@ -17,19 +17,23 @@ config.rabbitmq = {
 };
 
 config.mongodb = {
-  port: process.env.MONGODB_PORT || 27017,
-  host: process.env.MONGODB_HOST || "localhost",
-  db: process.env.MONGODB_DATABASE || "database"
+  port: process.env.MONGO_PORT || 27017,
+  host: process.env.MONGO_HOST || "localhost",
+  db: process.env.MONGO_DATABASE || "database"
 };
-
-console.log(MONGODB_PORT, MONGODB_HOST, MONGODB_DATABASE)
 
 // only when using Docker
 if (S(config.rabbitmq.port).contains("tcp://")) {
     config.rabbitmq.host = S(config.rabbitmq.port).between("tcp://",":").s
     config.rabbitmq.port = S(config.rabbitmq.port).chompLeft("tcp://").s
     config.rabbitmq.port = S(config.rabbitmq.port).between(':').s
-  }
+}
+
+if (S(config.mongodb.port).contains("tcp://")) {
+    config.mongodb.host = S(config.mongodb.port).between("tcp://",":").s
+    config.mongodb.port = S(config.mongodb.port).chompLeft("tcp://").s
+    config.mongodb.port = S(config.mongodb.port).between(':').s
+}
 
 if (PRODUCTION) {
   config.express.ip = "0.0.0.0";
